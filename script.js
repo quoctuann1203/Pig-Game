@@ -13,15 +13,30 @@ const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 
 // Start Condition
-score0Ele.textContent = 0;
-score1Ele.textContent = 0;
-diceEle.classList.add('hidden');
 
-const scores = [0, 0]; // Final score
-let currentScore = 0;
-let activePlayer = 0;
+let playing, currentScore, activePlayer, scores;
+const init = function () {
+  score0Ele.textContent = 0;
+  score1Ele.textContent = 0;
+  current0Ele.textContent = 0;
+  current1Ele.textContent = 0;
 
-let playing = true;
+  playing = true;
+
+  diceEle.classList.add('hidden');
+
+  scores = [0, 0]; // Final score
+  currentScore = 0;
+  activePlayer = 0;
+
+  diceEle.classList.add('hidden');
+  player0Ele.classList.remove('player--winner');
+  player1Ele.classList.remove('player--winner');
+  player0Ele.classList.add('player--active');
+  player1Ele.classList.remove('player--active');
+};
+
+init();
 
 // Switch player
 const switchPlayer = function () {
@@ -78,6 +93,4 @@ btnHold.addEventListener('click', function () {
   }
 });
 
-btnNew.addEventListener('click',function() {
-  location.reload();
-})
+btnNew.addEventListener('click', init);
